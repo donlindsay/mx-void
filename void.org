@@ -17,19 +17,47 @@ maintained or aggregated by a single provider."
 
 mx-uri-void
     http://rdfs.org/ns/void#Dataset
-(setq mx-property '((
-    void:feature, void:subset, void:sparqlEndpoint, void:exampleResource, void:vocabulary, void:dataDump, void:uriLookupEndpoint, void:uriRegexPattern, void:class, void:classes, void:classPartition, void:distinctObjects, void:distinctSubjects, void:documents, void:entities, void:openSearchDescription, void:properties, void:property, void:propertyPartition, void:rootResource, void:triples, void:uriSpace
-(setq mx-used-with '((
-    void:subset, void:target, void:subjectsTarget, void:objectsTarget, void:classPartition, void:inDataset, void:propertyPartition
-Superclass:
-    dctype:Dataset
-Subclass:
-    void:Linkset
+
+(setq mx-void-property '((mx-void-feature . nil) 
+			 (mx-void-subset . nil)
+			 (mx-void-sparqlEndpoint . nil) 
+			 (mx-void-exampleResource . nil) 
+			 (mx-void-vocabulary . nil)
+			 (mx-void-dataDump . nil) 
+			 (mx-void-uriLookupEndpoint . nil) 
+			 (mx-void-uriRegexPattern . nil)
+			 (mx-void-class . nil) 
+			 (mx-void-classes . nil) 
+			 (mx-void-classPartition . nil)
+    			 (mx-void-distinctObjects . nil) 
+			 (mx-void-distinctSubjects . nil) 
+			 (mx-void-documents . nil)
+			 (mx-void-entities . nil) 
+			 (mx-void-openSearchDescription . nil) 
+			 (mx-void-properties . nil)
+			 (mx-void-property . nil) 
+			 (mx-void-propertyPartition . nil) 
+			 (mx-void-rootResource . nil)
+			 (mx-void-triples . nil) 
+			 (mx-void-uriSpace))
+
+(setq mx-used-with '((mx-void-subset . nil) 
+		     (mx-void-target . nil)
+		     (mx-void-subjectsTarget . nil) 
+		     (mx-void-objectsTarget . nil) 
+		     (mx-void-classPartition . nil)
+		     (mx-void-inDataset . nil) 
+		     (mx-void-propertyPartition)))
+
+
+(setq mx-void-Superclass mx-dctype-dataset
+
+mx-void-subclass void-Linkset
 
 [back to top]
-mx-class void:DatasetDescription
+mx-class void-DatasetDescription
 
-dataset description – A web resource whose foaf:primaryTopic or foaf:topics include void:Datasets.
+dataset description – A web resource whose foaf:primaryTopic or foaf:topics include void-Datasets.
 
 mx-uri-void
     http://rdfs.org/ns/void#DatasetDescription
@@ -37,26 +65,26 @@ Superclass:
     foaf:Document
 
 (defvar mx-void-Linkset 'mx-void-linkset
-  "linkset – A collection of RDF links between two void:Datasets.")
+  "linkset – A collection of RDF links between two void-Datasets.")
   
 mx-uri-void
     http://rdfs.org/ns/void#Linkset
 (setq mx-property '((
-    void:target, void:linkPredicate, void:subjectsTarget, void:objectsTarget
+    void-target, void-linkPredicate, void-subjectsTarget, void-objectsTarget
 (setq mx-superclass-void '((
-    void:Dataset
+    void-Dataset
 
 (defvar mx-void-technicalfeature 'mx-void-technicalfeature
-  "technical feature – A technical feature of a void:Dataset,
+  "technical feature – A technical feature of a void-Dataset,
  such as a supported RDF serialization format.")
 
 mx-uri-void http://rdfs.org/ns/void#TechnicalFeature
 (setq mx-used-with '((
-    void:feature
+    void-feature
 
 
 Properties
-Property: void:class
+Property: void-class
 
 class – The rdfs:Class that is the rdf:type of all entities in a class-based partition.
 
@@ -65,148 +93,150 @@ mx-uri-void
 Type:
     owl:FunctionalProperty
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     rdfs:Class
 
 
-Property: void:classPartition
+Property: void-classPartition
 
-class partition – A subset of a void:Dataset that contains only the entities of a certain rdfs:Class.
+class partition – A subset of a void-Dataset that contains only the entities of a certain rdfs:Class.
 
 mx-uri-void
     http://rdfs.org/ns/void#classPartition
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
-    void:Dataset
+    void-Dataset
 Superproperty:
-    void:subset
+    void-subset
 
 
-Property: void:classes
+Property: void-classes
 
-classes – The total number of distinct classes in a void:Dataset. In other words, the number of distinct resources occuring as objects of rdf:type triples in the dataset.
+classes – The total number of distinct classes in a void-Dataset. In other words, the number of distinct resources occuring as objects of rdf:type triples in the dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#classes
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     xsd:integer
 
 
-Property: void:dataDump
+Property: void-dataDump
 
-Data Dump – An RDF dump, partial or complete, of a void:Dataset.
+Data Dump – An RDF dump, partial or complete, of a void-Dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#dataDump
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     rdfs:Resource
 
 
-Property: void:distinctObjects
+Property: void-distinctObjects
 
-distinct objects – The total number of distinct objects in a void:Dataset. In other words, the number of distinct resources that occur in the object position of triples in the dataset. Literals are included in this count.
+distinct objects – The total number of distinct objects in a void-Dataset. In other words, the number of distinct resources that occur in the object position of triples in the dataset. Literals are included in this count.
 
 mx-uri-void
     http://rdfs.org/ns/void#distinctObjects
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     xsd:integer
 
 
-Property: void:distinctSubjects
+Property: void-distinctSubjects
 
-distinct subjects – The total number of distinct subjects in a void:Dataset. In other words, the number of distinct resources that occur in the subject position of triples in the dataset.
+"distinct subjects – The total number of distinct subjects in a
+void-Dataset. In other words, the number of distinct resources
+that occur in the subject position of triples in the dataset."
 
 mx-uri-void
     http://rdfs.org/ns/void#distinctSubjects
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     xsd:integer
 
 
-Property: void:documents
+Property: void-documents
 
-number of documents – The total number of documents, for datasets that are published as a set of individual documents, such as RDF/XML documents or RDFa-annotated web pages. Non-RDF documents, such as web pages in HTML or images, are usually not included in this count. This property is intended for datasets where the total number of triples or entities is hard to determine. void:triples or void:entities should be preferred where practical.
+number of documents – The total number of documents, for datasets that are published as a set of individual documents, such as RDF/XML documents or RDFa-annotated web pages. Non-RDF documents, such as web pages in HTML or images, are usually not included in this count. This property is intended for datasets where the total number of triples or entities is hard to determine. void-triples or void-entities should be preferred where practical.
 
 mx-uri-void
     http://rdfs.org/ns/void#documents
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     xsd:integer
 
 
-Property: void:entities
+Property: void-entities
 
-number of entities – The total number of entities that are described in a void:Dataset.
+number of entities – The total number of entities that are described in a void-Dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#entities
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     xsd:integer
 
 
-Property: void:exampleResource
+Property: void-exampleResource
 
 example resource of dataset
 
 mx-uri-void
     http://rdfs.org/ns/void#exampleResource
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     rdfs:Resource
 
 
-Property: void:feature
+Property: void-feature
 
 feature
 
 mx-uri-void
     http://rdfs.org/ns/void#feature
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
-    void:TechnicalFeature
+    void-TechnicalFeature
 
 
-Property: void:inDataset
+Property: void-inDataset
 
-in dataset – Points to the void:Dataset that a document is a part of.
+in dataset – Points to the void-Dataset that a document is a part of.
 
 mx-uri-void
     http://rdfs.org/ns/void#inDataset
 Domain:
     foaf:Document
 Range:
-    void:Dataset
+    void-Dataset
 Superproperty:
     dct:isPartOf
 
 
-Property: void:linkPredicate
+Property: void-linkPredicate
 
 a link predicate
 
 mx-uri-void
     http://rdfs.org/ns/void#linkPredicate
 Domain:
-    void:Linkset
+    void-Linkset
 Range:
     rdf:Property
 
 
-Property: void:objectsTarget
+Property: void-objectsTarget
 
 Objects Target – The dataset describing the objects of the triples contained in the Linkset.
 
@@ -215,38 +245,38 @@ mx-uri-void
 Type:
     owl:FunctionalProperty
 Domain:
-    void:Linkset
+    void-Linkset
 Range:
-    void:Dataset
+    void-Dataset
 Superproperty:
-    void:target
+    void-target
 
 
-Property: void:openSearchDescription
+Property: void-openSearchDescription
 
-open search description – An OpenSearch description document for a free-text search service over a void:Dataset.
+open search description – An OpenSearch description document for a free-text search service over a void-Dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#openSearchDescription
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     foaf:Document
 
 
-Property: void:properties
+Property: void-properties
 
-number of properties – The total number of distinct properties in a void:Dataset. In other words, the number of distinct resources that occur in the predicate position of triples in the dataset.
+number of properties – The total number of distinct properties in a void-Dataset. In other words, the number of distinct resources that occur in the predicate position of triples in the dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#properties
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     xsd:integer
 
 
-Property: void:property
+Property: void-property
 
 property – The rdf:Property that is the predicate of all triples in a property-based partition.
 
@@ -255,46 +285,46 @@ mx-uri-void
 Type:
     owl:FunctionalProperty
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     rdf:Property
 
 
-Property: void:propertyPartition
+Property: void-propertyPartition
 
-property partition – A subset of a void:Dataset that contains only the triples of a certain rdf:Property.
+property partition – A subset of a void-Dataset that contains only the triples of a certain rdf:Property.
 
 mx-uri-void
     http://rdfs.org/ns/void#propertyPartition
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
-    void:Dataset
+    void-Dataset
 Superproperty:
-    void:subset
+    void-subset
 
 
-Property: void:rootResource
+Property: void-rootResource
 
-root resource – A top concept or entry point for a void:Dataset that is structured in a tree-like fashion. All resources in a dataset can be reached by following links from its root resources in a small number of steps.
+root resource – A top concept or entry point for a void-Dataset that is structured in a tree-like fashion. All resources in a dataset can be reached by following links from its root resources in a small number of steps.
 
 mx-uri-void
     http://rdfs.org/ns/void#rootResource
 Domain:
-    void:Dataset
+    void-Dataset
 
 
-Property: void:sparqlEndpoint
+Property: void-sparqlEndpoint
 
 has a SPARQL endpoint at
 
 mx-uri-void
     http://rdfs.org/ns/void#sparqlEndpoint
 Domain:
-    void:Dataset
+    void-Dataset
 
 
-Property: void:subjectsTarget
+Property: void-subjectsTarget
 
 Subjects Target – The dataset describing the subjects of triples contained in the Linkset.
 
@@ -303,97 +333,93 @@ mx-uri-void
 Type:
     owl:FunctionalProperty
 Domain:
-    void:Linkset
+    void-Linkset
 Range:
-    void:Dataset
+    void-Dataset
 Superproperty:
-    void:target
+    void-target
 
 
-Property: void:subset
+Property: void-subset
 
 has subset
 
 mx-uri-void
     http://rdfs.org/ns/void#subset
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
-    void:Dataset
+    void-Dataset
 Subproperties:
-    void:classPartition, void:propertyPartition
+    void-classPartition, void-propertyPartition
 
 
-Property: void:target
+Property: void-target
 
 Target – One of the two datasets linked by the Linkset.
 
 mx-uri-void
     http://rdfs.org/ns/void#target
 Domain:
-    void:Linkset
+    void-Linkset
 Range:
-    void:Dataset
+    void-Dataset
 Subproperties:
-    void:subjectsTarget, void:objectsTarget
+    void-subjectsTarget, void-objectsTarget
 
 
-Property: void:triples
+Property: void-triples
 
-number of triples – The total number of triples contained in a void:Dataset.
+number of triples – The total number of triples contained in a void-Dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#triples
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     xsd:integer
 
 
-Property: void:uriLookupEndpoint
+Property: void-uriLookupEndpoint
 
 has an URI look-up endpoint at – Defines a simple URI look-up protocol for accessing a dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#uriLookupEndpoint
 Domain:
-    void:Dataset
+    void-Dataset
 
 
-Property: void:uriRegexPattern
+Property: void-uriRegexPattern
 
 has URI regular expression pattern – Defines a regular expression pattern matching URIs in the dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#uriRegexPattern
 Domain:
-    void:Dataset
+    void-Dataset
 
 
-Property: void:uriSpace
+Property: void-uriSpace
 
-URI space – A URI that is a common string prefix of all the entity URIs in a void:Dataset.
+URI space – A URI that is a common string prefix of all the entity URIs in a void-Dataset.
 
 mx-uri-void
     http://rdfs.org/ns/void#uriSpace
 Domain:
-    void:Dataset
+    void-Dataset
 Range:
     rdfs:Literal
 
+(defvar mx-void-vocabulary 'void-vocabulary
+  "vocabulary – A vocabulary that is used in the dataset.")
 
-Property: void:vocabulary
+(setq mx-uri-void "http://rdfs.org/ns/void#vocabulary")
 
-vocabulary – A vocabulary that is used in the dataset.
+(setq mx-void-domain 'void-Dataset "Default VOID domain value.")
 
-mx-uri-void
-    http://rdfs.org/ns/void#vocabulary
-Domain:
-    void:Dataset
-
-
-
-
+;; this is the main header string for new void buffers
+(defvar mx-void-header-string "
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -402,113 +428,148 @@ Domain:
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix wv: <http://vocab.org/waiver/terms/norms> .        
-@prefix sd: <http://www.w3.org/ns/sparql-service-description
+@prefix sd: <http://www.w3.org/ns/sparql-service-description .
 
 @prefix : <#> .
 
-<document.rdf> void:inDataset <void.ttl#MyDataset>.
+<document.rdf> void-inDataset <void.ttl#MyDataset> .")
 
-:Aggregate_DS a void:Dataset;
+:Aggregate_DS a void-Dataset;
     dcterms:title "Aggregate Dataset";
     dcterms:description "An aggregate of the A and B datasets.";
-    void:sparqlEndpoint <http://example.org/sparql>;
-    void:subset :DS_A;
-    void:subset :DS_B;
+    void-sparqlEndpoint <http://example.org/sparql>;
+    void-subset :DS_A;
+    void-subset :DS_B;
     .
 
-:MyDataset a void:Dataset;
-    void:classPartition [ void:class foaf:Person; ];
-    void:classPartition [ void:class foaf:Organization; ];
-    void:propertyPartition [ void:property foaf:name; ];
-    void:propertyPartition [ void:property foaf:member; ];
-    void:propertyPartition [ void:property foaf:homepage; ];
-    void:propertyPartition [ void:property rdf:type; ];
+:MyDataset a void-Dataset;
+    void-classPartition [ void-class foaf:Person; ];
+    void-classPartition [ void-class foaf:Organization; ];
+    void-propertyPartition [ void-property foaf:name; ];
+    void-propertyPartition [ void-property foaf:member; ];
+    void-propertyPartition [ void-property foaf:homepage; ];
+    void-propertyPartition [ void-property rdf:type; ];
     .
 
 
 
-Note: There are two different notions of “directionality” for RDF links:
+;; slightly modified version of the note contained in the official ref:
+;; Note: There are two different notions of “directionality” for RDF links:
+;;
+;;     Which dataset provides the subjects of the triples, and which the objects?
+;;     Which dataset contains the links? (Who published them?)
+;;
+;;     The void-subjectsTarget and void-objectsTarget properties
+;;     express the first notion, while not stating anything about
+;;     containment of the links. The second notion is expressed by
+;;     making the linkset a void-subset of the respective target
+;;     datasets.
+;;
+;;     Especially when referring to owl:sameAs links, usually the
+;;     second notion is intended. The property is symmetric, so
+;;     their subjects and objects are exchangeable. The question is
+;;     usually which publisher made the links available as part of
+;;     their dataset.
 
-    Which dataset provides the subjects of the triples, and which the objects?
-    Which dataset contains the links? (Who published them?)
+;; example VOID in an org src block
+;; #+begin_src n3
+;; :DBpedia a void-Dataset .
+;; :DBpedia_Geonames a void-Linkset .
+;; :DBpedia a void-Dataset;
+;;    foaf:homepage <http://dbpedia.org/> .
+;; #+end_src
 
-The void:subjectsTarget and void:objectsTarget properties express the first notion, while not stating anything about containment of the links. The second notion is expressed by making the linkset a void:subset of the respective target datasets.
+(defvar dcterms-title "The name of the dataset.")
 
-Especially when referring to owl:sameAs links, usually the second notion is intended. The property is symmetric, so their subjects and objects are exchangeable. The question is usually which publisher made the links available as part of their dataset.
+(defvar dcterms-description "A textual description of the dataset.")
 
+(defvar dcterms-creator "An entity, such as a person,
+organisation, or service, that is primarily responsible for
+creating the dataset. The creator should be described as an RDF
+resource, rather than just providing the name as a literal.")
 
-:DBpedia a void:Dataset .
+(defvar dcterms-publisher "An entity, such as a person,
+organisation, or service, that is responsible for making the
+dataset available. The publisher should be described as an RDF
+resource, rather than just providing the name as a literal.")
 
-:DBpedia_Geonames a void:Linkset .
+(defvar dcterms-contributor "An entity, such as a person,
+organisation, or service, that is responsible for making
+contributions to the dataset. The contributor should be described
+as an RDF resource, rather than just providing the name as a
+literal.")
 
-:DBpedia a void:Dataset;
-    foaf:homepage <http://dbpedia.org/>;
-    .
-Term 	Purpose
-dcterms:title 	The name of the dataset.
-dcterms:description 	A textual description of the dataset.
-dcterms:creator 	An entity, such as a person, organisation, or service, that is primarily responsible for creating the dataset. The creator should be described as an RDF resource, rather than just providing the name as a literal.
-dcterms:publisher 	An entity, such as a person, organisation, or service, that is responsible for making the dataset available. The publisher should be described as an RDF resource, rather than just providing the name as a literal.
-dcterms:contributor 	An entity, such as a person, organisation, or service, that is responsible for making contributions to the dataset. The contributor should be described as an RDF resource, rather than just providing the name as a literal.
-dcterms:source 	A related resource from which the dataset is derived. The source should be described as an RDF resource, rather than as a literal.
-dcterms:date 	A point or period of time associated with an event in the life-cycle of the resource. The value should be formatted and data-typed as an xsd:date.
-dcterms:created 	Date of creation of the dataset. The value should be formatted and data-typed as an xsd:date.
-dcterms:issued 	Date of formal issuance (e.g., publication) of the dataset. The value should be formatted and datatyped as an xsd:date.
-dcterms:modified 	Date on which the dataset was changed. The
-value should be formatted and datatyped as an xsd:date.
+(defvar dcterms-source "A related resource from which the dataset
+is derived. The source should be described as an RDF resource,
+rather than as a literal.")
 
-:DBLP a void:Dataset; 
-    dcterms:subject <http://dbpedia.org/resource/Computer_science>;
-    dcterms:subject <http://dbpedia.org/resource/Journal>;
-    dcterms:subject <http://dbpedia.org/resource/Proceedings>;
-    .
+(defvar dcterms-date "A point or period of time associated with
+an event in the life-cycle of the resource. The value should be
+formatted and data-typed as an xsd:date.")
 
-URI 	Format
-http://www.w3.org/ns/formats/N3 	Notation3 (N3): A readable RDF syntax: W3C Team Submission 14 January 2008
-http://www.w3.org/ns/formats/N-Triples 	N-Triples (in RDF Test Cases: W3C Recommendation 10 February 2004)
-http://www.w3.org/ns/formats/RDF_XML 	RDF/XML Syntax Specification: W3C Recommendation 10 February 2004
-http://www.w3.org/ns/formats/RDFa 	RDFa in XHTML: Syntax and Processing: W3C Recommendation 14 October 2008
-http://www.w3.org/ns/formats/Turtle
+(defvar dcterms-created "Date of creation of the dataset. The
+value should be formatted and data-typed as an xsd:date.")
 
-:DBpedia a void:Dataset;
-    void:feature <http://www.w3.org/ns/formats/RDF_XML>;
-    .
+(defvar dcterms-issued "Date of formal issuance *or*
+publication of the dataset. The value should be formatted and
+datatyped as an xsd:date.")
 
-:HTTPCachingETags a void:TechnicalFeature;
-    rdfs:label "HTTP ETag support";
-    rdfs:comment "the dataset supports HTTP caching using ETags";
-    rdfs:seeAlso <http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#>;
-    .
-:DBpedia a void:Dataset;
-    void:sparqlEndpoint <http://dbpedia.org/sparql>;
-    .
-:NYTimes a void:Dataset;
-    void:dataDump <http://data.nytimes.com/people.rdf>;
-    void:dataDump <http://data.nytimes.com/organizations.rdf>;
-    void:dataDump <http://data.nytimes.com/locations.rdf>;
-    void:dataDump <http://data.nytimes.com/descriptors.rdf>;
-    .
-:Sindice a void:Dataset ; 
-    void:uriLookupEndpoint
-    <http://api.sindice.com/v2/search?qt=term&q=> .
-:Sindice a void:Dataset;
-    void:openSearchDescription
-    <http://www.sindice.com/opensearch.xml>.
-:DBpedia a void:Dataset;
-    void:exampleResource <http://dbpedia.org/resource/Berlin> ; 
-    void:exampleResource <http://dbpedia.org/resource/Physics> ;
-    void:exampleResource <http://dbpedia.org/resource/Ludwig_van_Beethoven> ;
-    .
-:DBpedia a void:Dataset;
-    void:uriSpace "http://dbpedia.org/resource/";
-    .
-:DBpedia a void:Dataset;
-    void:uriRegexPattern "^http://dbpedia\\.org/resource/";
-    .
-:DBpediaTurtleFiles a void:Dataset;
-    void:uriRegexPattern "^http://dbpedia\\.org/(.+)\\.ttl$";
-    void:feature <http://www.w3.org/ns/formats/Turtle>;
-    .
+(defvar dcterms-modified  "Date on which the dataset was changed. The
+value should be formatted and datatyped as an xsd:date.")
+
+;; :DBLP a void-Dataset ; 
+;;     dcterms-subject <http://dbpedia.org/resource/Computer_science> ;
+;;     dcterms-subject <http://dbpedia.org/resource/Journal> ;
+;;     dcterms-subject <http://dbpedia.org/resource/Proceedings> ;
+;;     .
+
+;; :DBpedia a void-Dataset ;
+;;     void-feature <http://www.w3.org/ns/formats/RDF_XML> ;
+;;     .
+
+;; :HTTPCachingETags a void-TechnicalFeature ;
+;;     rdfs:label "HTTP ETag support" ;
+;;     rdfs:comment "the dataset supports HTTP caching using ETags" ;
+;;     rdfs:seeAlso <http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#> ;
+;;     .
+
+;; :DBpedia a void-Dataset ;
+;;     void-sparqlEndpoint <http://dbpedia.org/sparql> ;
+;;     .
+
+;; :NYTimes a void-Dataset ;
+;;     void-dataDump <http://data.nytimes.com/people.rdf> ;
+;;     void-dataDump <http://data.nytimes.com/organizations.rdf> ;
+;;     void-dataDump <http://data.nytimes.com/locations.rdf> ;
+;;     void-dataDump <http://data.nytimes.com/descriptors.rdf> ;
+;;     .
+
+;; :Sindice a void-Dataset ; 
+;;     void-uriLookupEndpoint
+;;     <http://api.sindice.com/v2/search?qt=term&q=> .
+
+;; :Sindice a void-Dataset ;
+;;     void-openSearchDescription
+;;     <http://www.sindice.com/opensearch.xml> .
+
+;; :DBpedia a void-Dataset;
+;;     void-exampleResource <http://dbpedia.org/resource/Berlin> ; 
+;;     void-exampleResource <http://dbpedia.org/resource/Physics> ;
+;;     void-exampleResource <http://dbpedia.org/resource/Ludwig_van_Beethoven> ;
+;;     .
+
+;; :DBpedia a void-Dataset;
+;;     void-uriSpace "http://dbpedia.org/resource/";
+;;     .
+
+;; :DBpedia a void-Dataset;
+;;     void-uriRegexPattern "^http://dbpedia\\.org/resource/";
+;;     .
+
+;; :DBpediaTurtleFiles a void-Dataset;
+;;     void-uriRegexPattern "^http://dbpedia\\.org/(.+)\\.ttl$";
+;;     void-feature <http://www.w3.org/ns/formats/Turtle>;
+;;     .
 
 
 
