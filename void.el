@@ -1,3 +1,9 @@
+;; void.el Vocabulary of Interlinked Datasets library
+;; by Don Lindsay (don.lindsay@gmail.com)
+;; emacs boilerplate
+;; gpl2 boilerplate
+;; hammertime:
+
 (defvar mx-class-void 'mx-class-void "A VOID class.")
 
 (defvar mx-class 'mx-void-Dataset)
@@ -15,381 +21,348 @@ maintained or aggregated by a single provider."
       ; open a buffer and write the headers
       (message "VOID dataset open for editing."))
 
-(setq mx-uri-void "http://rdfs.org/ns/void#Dataset")
+(setq mx-void-uri "http://rdfs.org/ns/void#Dataset")
 
-(setq mx-void-property '((mx-void-feature . nil) 
-			 (mx-void-subset . nil)
-			 (mx-void-sparqlEndpoint . nil) 
-			 (mx-void-exampleResource . nil) 
-			 (mx-void-vocabulary . nil)
-			 (mx-void-dataDump . nil) 
-			 (mx-void-uriLookupEndpoint . nil) 
-			 (mx-void-uriRegexPattern . nil)
-			 (mx-void-class . nil) 
-			 (mx-void-classes . nil) 
-			 (mx-void-classPartition . nil)
-    			 (mx-void-distinctObjects . nil) 
-			 (mx-void-distinctSubjects . nil) 
-			 (mx-void-documents . nil)
-			 (mx-void-entities . nil) 
+(setq mx-void-property '((mx-void-feature               . nil) 
+			 (mx-void-subset                . nil)
+			 (mx-void-sparqlEndpoint        . nil) 
+			 (mx-void-exampleResource       . nil) 
+			 (mx-void-vocabulary            . nil)
+			 (mx-void-dataDump              . nil) 
+			 (mx-void-uriLookupEndpoint     . nil) 
+			 (mx-void-uriRegexPattern       . nil)
+			 (mx-void-class                 . nil) 
+			 (mx-void-classes               . nil) 
+			 (mx-void-classPartition        . nil)
+    			 (mx-void-distinctObjects       . nil) 
+			 (mx-void-distinctSubjects      . nil) 
+			 (mx-void-documents             . nil)
+			 (mx-void-entities              . nil) 
 			 (mx-void-openSearchDescription . nil) 
-			 (mx-void-properties . nil)
-			 (mx-void-property . nil) 
-			 (mx-void-propertyPartition . nil) 
-			 (mx-void-rootResource . nil)
-			 (mx-void-triples . nil) 
-			 (mx-void-uriSpace))
+			 (mx-void-properties            . nil)
+			 (mx-void-property              . nil) 
+			 (mx-void-propertyPartition     . nil) 
+			 (mx-void-rootResource          . nil)
+			 (mx-void-triples               . nil) 
+			 (mx-void-uriSpace              . nil)
+			 )
+      )
 
-(setq mx-used-with '((mx-void-subset . nil) 
-		     (mx-void-target . nil)
-		     (mx-void-subjectsTarget . nil) 
-		     (mx-void-objectsTarget . nil) 
-		     (mx-void-classPartition . nil)
-		     (mx-void-inDataset . nil) 
-		     (mx-void-propertyPartition)))
-
+(setq mx-void-with '((mx-void-subset                    . nil) 
+		     (mx-void-target                    . nil)
+		     (mx-void-subjectsTarget            . nil) 
+		     (mx-void-objectsTarget             . nil) 
+		     (mx-void-classPartition            . nil)
+		     (mx-void-inDataset                 . nil) 
+		     (mx-void-propertyPartition         . nil)
+		     )
+      )
 
 (setq mx-void-Superclass 'mx-dctype-dataset)
 
 (setq mx-void-subclass 'void-Linkset)
 
-(defvar mx-void-DatasetDescription 'void-datasetdescription
+(defvar mx-void-DatasetDescription 'void-dataset-description
   "dataset description – A web resource whose foaf:primaryTopic
   or foaf:topics include void-Datasets.")
 
-mx-uri-void http://rdfs.org/ns/void#DatasetDescription
-    Superclass: foaf:Document
+(setq mx-void-uri "http://rdfs.org/ns/void#DatasetDescription")
+
+(setq mx-void-superclass 'foaf-Documents)
 
 (defvar mx-void-Linkset 'mx-void-linkset
   "linkset – A collection of RDF links between two void-Datasets.")
   
-(setq mx-uri-void "http://rdfs.org/ns/void#Linkset")
+(setq mx-void-uri "http://rdfs.org/ns/void#Linkset")
 
 (setq mx-void-property '((void-target         . nil)
 			 (void-linkPredicate  . nil)
 			 (void-subjectsTarget . nil)
-			 (void-objectsTarget  . nil)))
+			 (void-objectsTarget  . nil)
+			 )
+      )
 
-(setq mx-superclass-void '((void-Dataset . nil)))
+(setq mx-superclass-void '((void-Dataset . nil)
+			   )
+      )
 
 (defvar mx-void-technicalfeature 'mx-void-technicalfeature
   "technical feature – A technical feature of a void-Dataset,
  such as a supported RDF serialization format.")
 
-(mx-uri-void "http://rdfs.org/ns/void#TechnicalFeature")
+(mx-void-uri "http://rdfs.org/ns/void#TechnicalFeature")
 
-(setq mx-void-with '((void-feature)))
+(setq mx-void-with '((void-feature . nil)
+		     )
+      )
 
 (defvar mx-void-class 'void-class
-  "class – The rdfs:Class that is the rdf:type of all entities in a
-class-based partition.")
+  "class – The rdfs:Class that is the rdf:type of all entities in
+a class-based partition.")
 
-(setq mx-uri-void "http://rdfs.org/ns/void#class")
+(setq mx-void-uri "http://rdfs.org/ns/void#class")
 
-Type:
-    owl:FunctionalProperty
-Domain:
-    void-Dataset
-Range:
-    rdfs:Class
+(setq mx-rdfs-type 'mx-owl-FunctionalProperty)
+
+(setq mx-void-domain 'void-Dataset)
+
+(setq mx-void-range 'mx-rdfs-class)
 
 (defvar mx-void-classPartition 'void-classPartition
   "class partition – A subset of a void-Dataset that contains
-  only the entities of a certain rdfs:Class.")
+  only the entities of a certain rdfs-class.")
 
-(setq mx-uri-void "http://rdfs.org/ns/void#classPartition")
+(setq mx-void-uri "http://rdfs.org/ns/void#classPartition")
 
-mx-void-domain
-    void-Dataset
-Range:
-    void-Dataset
-Superproperty:
-    void-subset
+(setq mx-void-domain 'void-Dataset)
+
+(setq mx-rdfs-range 'void-Dataset)
+
+(setq mx-super-property 'void-subset)
 
 (defvar mx-void-classes 'void-classes
-  "classes – The total number of distinct classes in a
+  "Classes – The total number of distinct classes in a
 void-Dataset. In other words, the number of distinct resources
 occuring as objects of rdf:type triples in the dataset.")
 
-(setq mx-uri-void "http://rdfs.org/ns/void#classes")
+(setq mx-void-uri "http://rdfs.org/ns/void#classes")
 
-mx-void-domain
-    void-Dataset
-Range:
-    xsd:integer
+(setq mx-void-domain 'void-Dataset)
 
+(setq mx-rdfs-range 'ms-xsd-integer)
 
-(defvar mx- void-dataDump
+(defvar mx-void-dataDump 'void-dataDump
+ "Data Dump – An RDF dump, partial or complete, of a void-Dataset.")
 
-Data Dump – An RDF dump, partial or complete, of a void-Dataset.
+(setq mx-void-uri "http://rdfs.org/ns/void#dataDump")
 
-mx-uri-void
-    http://rdfs.org/ns/void#dataDump
-mx-void-domain
-    void-Dataset
-Range:
-    rdfs:Resource
+(setq mx-void-domain 'void-Dataset)
 
+(setq mx-rdfs-range 'mx-rdfs-Resource)
 
-(defvar mx- void-distinctObjects
+(defvar mx-void-distinctObjects 'void-distinct-objects
+  "distinct objects – The total number of distinct objects in a
+  void-Dataset. In other words, the number of distinct resources
+  that occur in the object position of triples in the
+  dataset. Literals are included in this count.")
 
-distinct objects – The total number of distinct objects in a void-Dataset. In other words, the number of distinct resources that occur in the object position of triples in the dataset. Literals are included in this count.
+(setq mx-void-uri "http://rdfs.org/ns/void#distinctObjects")
 
-mx-uri-void
-    http://rdfs.org/ns/void#distinctObjects
-mx-void-domain
-    void-Dataset
-Range:
-    xsd:integer
+(setq mx-void-domain 'void-Dataset)
 
+(setq mx-rdfs-range 'xsd-integer)
 
-(defvar mx- void-distinctSubjects
-
-"distinct subjects – The total number of distinct subjects in a
+(defvar mx-void-distinctSubjects 'void-distinctSubjects
+  "distinct subjects – The total number of distinct subjects in a
 void-Dataset. In other words, the number of distinct resources
-that occur in the subject position of triples in the dataset."
+that occur in the subject position of triples in the dataset.")
 
-mx-uri-void
-    http://rdfs.org/ns/void#distinctSubjects
-mx-void-domain
-    void-Dataset
-Range:
-    xsd:integer
+(setq mx-void-uri "http://rdfs.org/ns/void#distinctSubjects")
 
+(setq mx-void-domain 'void-Dataset)
 
-(defvar mx- void-documents
+(setq mx-xsd-integer 'xsd-integer)
 
-number of documents – The total number of documents, for datasets that are published as a set of individual documents, such as RDF/XML documents or RDFa-annotated web pages. Non-RDF documents, such as web pages in HTML or images, are usually not included in this count. This property is intended for datasets where the total number of triples or entities is hard to determine. void-triples or void-entities should be preferred where practical.
+(defvar mx-void-documents 'void-documents
+  "number of documents – The total number of documents, for
+  datasets that are published as a set of individual documents,
+  such as RDF/XML documents or RDFa-annotated web pages. Non-RDF
+  documents, such as web pages in HTML or images, are usually not
+  included in this count. This property is intended for datasets
+  where the total number of triples or entities is hard to
+  determine. void-triples or void-entities should be preferred
+  where practical.")
 
-mx-uri-void
-    http://rdfs.org/ns/void#documents
-mx-void-domain
-    void-Dataset
-Range:
-    xsd:integer
+(setq mx-void-uri "http://rdfs.org/ns/void#documents")
 
+(setq mx-void-domain 'void-Dataset)
 
-(defvar mx- void-entities
+(setq mx-rdfs-range 'mx-xsd-integer)
 
-number of entities – The total number of entities that are described in a void-Dataset.
 
-mx-uri-void
-    http://rdfs.org/ns/void#entities
-mx-void-domain
-    void-Dataset
-Range:
-    xsd:integer
+(defvar mx-void-entities 'void-entities
+  "number of entities – The total number of entities that are
+  described in a void-Dataset.")
 
+(setq mx-void-uri "http://rdfs.org/ns/void#entities")
 
-(defvar mx- void-exampleResource
+(setq mx-void-domain 'void-Dataset)
 
-example resource of dataset
+(setq mx-rdfs-range 'xsd-integer)
 
-mx-uri-void
-    http://rdfs.org/ns/void#exampleResource
-mx-void-domain
-    void-Dataset
-Range:
-    rdfs:Resource
+(defvar mx-void-exampleResource
+  "example resource of dataset")
 
+(setq mx-void-uri "http://rdfs.org/ns/void#exampleResource")
 
-(defvar mx- void-feature
+(setq mx-void-domain 'void-Dataset)
 
-feature
+(setq mx-rdfs-range 'rdfs-Resource)
 
-mx-uri-void
-    http://rdfs.org/ns/void#feature
-mx-void-domain
-    void-Dataset
-Range:
-    void-TechnicalFeature
+(defvar mx-void-feature 'void-feature
+  "A VOID feature.")
 
+(setq mx-void-uri "http://rdfs.org/ns/void#feature")
 
-(defvar mx- void-inDataset
+(setq mx-void-domain 'void-Dataset)
 
-in dataset – Points to the void-Dataset that a document is a part of.
+(setq mx-rdfs-range 'void-TechnicalFeature)
 
-mx-uri-void
-    http://rdfs.org/ns/void#inDataset
-mx-void-domain
-    foaf:Document
-Range:
-    void-Dataset
-Superproperty:
-    dct:isPartOf
+(defvar mx-void-inDataset 'void-inDataset
+  "in dataset – Points to the void-Dataset that a document is a
+  part of.")
 
+(setq mx-void-uri "http://rdfs.org/ns/void#inDataset")
 
-(defvar mx- void-linkPredicate
+(setq mx-void-domain 'foaf-Documents)
 
-a link predicate
+(setq mx-rdfs-range 'void-Dataset)
 
-mx-uri-void
-    http://rdfs.org/ns/void#linkPredicate
-mx-void-domain
-    void-Linkset
-Range:
-    rdf:Property
+(setq mx-void-SuperpropertyOf 'dct-isPartOf)
 
+(defvar mx-void-linkPredicate 'void-linkPredicate
+  "A link predicate.")
 
-(defvar mx- void-objectsTarget
+(setq mx-void-uri "http://rdfs.org/ns/void#linkPredicate")
 
-Objects Target – The dataset describing the objects of the triples contained in the Linkset.
+(setq mx-void-domain 'void-Linkset)
 
-mx-uri-void
-    http://rdfs.org/ns/void#objectsTarget
-Type:
-    owl:FunctionalProperty
-mx-void-domain
-    void-Linkset
-Range:
-    void-Dataset
-Superproperty:
-    void-target
+(setq mx-rdfs-range 'rdf-Property)
 
 
-(defvar mx- void-openSearchDescription
+(defvar mx-void-objectsTarget 'void-objectsTarget
+  "Objects Target – The dataset describing the objects of the
+  triples contained in the Linkset.")
 
-open search description – An OpenSearch description document for a free-text search service over a void-Dataset.
+(setq mx-void-uri "http://rdfs.org/ns/void#objectsTarget")
 
-mx-uri-void
-    http://rdfs.org/ns/void#openSearchDescription
-mx-void-domain
-    void-Dataset
-Range:
-    foaf:Document
+(setq mx-rdfs-type 'mx-owl-FunctionalProperty)
 
+(setq mx-void-domain 'mx-void-Linkset)
 
-(defvar mx- void-properties
+(setq mx-rdfs-range 'void-Dataset)
 
-number of properties – The total number of distinct properties in a void-Dataset. In other words, the number of distinct resources that occur in the predicate position of triples in the dataset.
+(setq mx-void-superproperty 'void-target)
 
-mx-uri-void
-    http://rdfs.org/ns/void#properties
-mx-void-domain
-    void-Dataset
-Range:
-    xsd:integer
+(defvar mx-void-openSearchDescription 'void-openSearchDescription
+  "open search description – An OpenSearch description document
+  for a free-text search service over a void-Dataset.")
 
+(setq mx-void-uri "http://rdfs.org/ns/void#openSearchDescription")
 
-(defvar mx- void-property
+(setq mx-void-domain 'void-Dataset)
 
-property – The rdf:Property that is the predicate of all triples in a property-based partition.
+(setq mx-rdfs-range 'foaf-Documents)
 
-mx-uri-void
-    http://rdfs.org/ns/void#property
-Type:
-    owl:FunctionalProperty
-mx-void-domain
-    void-Dataset
-Range:
-    rdf:Property
+(defvar mx-void-properties 'mx-void-properties
+  "Number of properties – The total number of distinct properties
+in a void-Dataset. In other words, the number of distinct
+resources that occur in the predicate position of triples in the
+dataset.")
 
+(setq mx-void-uri "http://rdfs.org/ns/void#properties")
 
-(defvar mx- void-propertyPartition
+(setq mx-void-domain 'void-Dataset)
 
-property partition – A subset of a void-Dataset that contains only the triples of a certain rdf:Property.
+(setq mx-rdfs-range 'mx-xsd-integer)
 
-mx-uri-void
-    http://rdfs.org/ns/void#propertyPartition
-mx-void-domain
-    void-Dataset
-Range:
-    void-Dataset
-Superproperty:
-    void-subset
+(defvar mx-void-property 'void-property
+  "Property – The rdf:Property that is the predicate of all
+  triples in a property-based partition.")
 
+(setq mx-void-uri "http://rdfs.org/ns/void#property")
 
-(defvar mx- void-rootResource
+(setq mx-rdfs-type 'mx-owl-FunctionalProperty)
 
-root resource – A top concept or entry point for a void-Dataset that is structured in a tree-like fashion. All resources in a dataset can be reached by following links from its root resources in a small number of steps.
+(setq mx-void-domain 'void-Dataset)
 
-mx-uri-void
-    http://rdfs.org/ns/void#rootResource
-mx-void-domain
-    void-Dataset
+(setq mx-rdfs-range 'rdf-Property)
 
+(defvar mx-void-propertyPartition
+  "property partition – A subset of a void-Dataset that contains
+  only the triples of a certain rdf:Property.")
 
-(defvar mx- void-sparqlEndpoint
+(setq mx-void-uri "http://rdfs.org/ns/void#propertyPartition")
 
-has a SPARQL endpoint at
+(setq mx-void-domain 'void-Dataset)
 
-mx-uri-void
-    http://rdfs.org/ns/void#sparqlEndpoint
-mx-void-domain
-    void-Dataset
+(setq mx-rdfs-range 'void-Dataset)
 
+(setq mx-void-Superproperty 'void-subset)
 
-(defvar mx- void-subjectsTarget
+(defvar mx-void-rootResource 'void-root-Resources
+  "Root resource – A top concept or entry point for a
+  void-Dataset that is structured in a tree-like fashion. All
+  resources in a dataset can be reached by following links from
+  its root resources in a small number of steps.")
 
-Subjects Target – The dataset describing the subjects of triples contained in the Linkset.
+(setq mx-void-uri "http://rdfs.org/ns/void#rootResource")
 
-mx-uri-void
-    http://rdfs.org/ns/void#subjectsTarget
-Type:
-    owl:FunctionalProperty
-mx-void-domain
-    void-Linkset
-Range:
-    void-Dataset
-Superproperty:
-    void-target
+(setq mx-void-domain 'void-Dataset)
 
+(defvar mx-void-sparqlEndpoint "http://rdfs.org/ns/void#sparqlEndpoint")
 
-(defvar mx- void-subset
+(setq mx-void-domain 'void-Dataset)
 
-has subset
+(defvar mx-void-subjectsTarget 'void-subjects-target
+  "Subjects Target – The dataset describing the subjects of
+triples contained in the Linkset.")
 
-mx-uri-void
-    http://rdfs.org/ns/void#subset
-mx-void-domain
-    void-Dataset
-Range:
-    void-Dataset
-Subproperties:
-    void-classPartition, void-propertyPartition
+(setq mx-void-uri "http://rdfs.org/ns/void#subjectsTarget")
 
+(setq mx-rdfs-type 'mx-owl-FunctionalProperty)
 
-(defvar mx- void-target
+(setq mx-void-domain 'void-Linkset)
 
-Target – One of the two datasets linked by the Linkset.
+(setq mx-rdfs-range 'void-Dataset)
 
-mx-uri-void
-    http://rdfs.org/ns/void#target
-mx-void-domain
-    void-Linkset
-Range:
-    void-Dataset
-Subproperties:
-    void-subjectsTarget, void-objectsTarget
+(setq mx-void-super-property 'void-target)
 
+(defvar mx-void-subset "http://rdfs.org/ns/void#subset")
 
-(defvar mx- void-triples
+(setq mx-void-domain 'void-Dataset)
 
-number of triples – The total number of triples contained in a void-Dataset.
+(setq mx-rdfs-range 'void-Dataset)
 
-mx-uri-void
-    http://rdfs.org/ns/void#triples
-mx-void-domain
-    void-Dataset
-Range:
-    xsd:integer
+(setq mx-void-subproperties
+    '((void-classPartition    . nil) 
+      (void-propertyPartition . nil))
 
+(defvar mx-void-target 
+  "Target – One of the two datasets linked by the Linkset.")
 
-(defvar mx- void-uriLookupEndpoint
+(setq mx-void-uri "http://rdfs.org/ns/void#target")
 
-has an URI look-up endpoint at – Defines a simple URI look-up protocol for accessing a dataset.
+(setq mx-void-domain 'void-Linkset)
 
-mx-uri-void
-    http://rdfs.org/ns/void#uriLookupEndpoint
-mx-void-domain
-    void-Dataset
+(setq mx-rdfs-range 'void-Dataset)
 
+(setq mx-void-subproperties
+    '((void-subjectsTarget . nil) 
+      (void-objectsTarget  . nil)))
+
+(defvar mx-void-triples
+  "Number of triples – The total number of triples contained in a
+  void-Dataset.")
+
+(setq mx-void-uri "http://rdfs.org/ns/void#triples")
+
+(setq mx-void-domain 'void-Dataset)
+
+(setq mx-rdfs-range 'xsd-integer)
+
+(defvar mx-void-uriLookupEndpoint
+  "Defines a simple URI look-up protocol for accessing a dataset.")
+
+(setq mx-void-uri "http://rdfs.org/ns/void#uriLookupEndpoint")
+
+(setq mx-void-domain 'void-Dataset)
 
 (defvar mx-void-uriRegexPattern
   "URI regular expression pattern – Defines a regular expression
 pattern matching URIs in the dataset.")
 
-(setq mx-uri-void "http://rdfs.org/ns/void#uriRegexPattern")
+(setq mx-void-uri "http://rdfs.org/ns/void#uriRegexPattern")
 
 (setq mx-void-domain 'void-Dataset)
 
@@ -397,7 +370,7 @@ pattern matching URIs in the dataset.")
   "URI space – A URI that is a common string prefix of all the
   entity URIs in a void-Dataset.")
 
-(setq mx-uri-void "http://rdfs.org/ns/void#uriSpace")
+(setq mx-void-uri "http://rdfs.org/ns/void#uriSpace")
 
 (setq mx-void-domain 'void-Dataset)
 
@@ -406,7 +379,7 @@ pattern matching URIs in the dataset.")
 (defvar mx-void-vocabulary 'void-vocabulary
   "vocabulary – A vocabulary that is used in the dataset.")
 
-(setq mx-uri-void "http://rdfs.org/ns/void#vocabulary")
+(setq mx-void-uri "http://rdfs.org/ns/void#vocabulary")
 
 (setq mx-void-domain 'void-Dataset "Default VOID domain value.")
 
@@ -442,8 +415,6 @@ pattern matching URIs in the dataset.")
     void-propertyPartition [ void-property foaf:homepage; ];
     void-propertyPartition [ void-property rdf:type; ];
     .
-
-
 
 ;; slightly modified version of the note contained in the official ref:
 ;; Note: There are two different notions of “directionality” for RDF links:
