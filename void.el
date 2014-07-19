@@ -2,24 +2,38 @@
 ;; by Don Lindsay (don.lindsay@gmail.com)
 ;; emacs boilerplate
 ;; gpl2 boilerplate
+;;
+;; Modified version of the discourse on 'directionality:
+;;
+;;     There are two different notions of “directionality” for RDF
+;;     links:
+;;
+;;     Which dataset provides the subjects of the triples, and which
+;;     the objects?
+;;
+;;     Which dataset contains the links? (Who published them?)
+;;
+;;     The void-subjectsTarget and void-objectsTarget properties
+;;     express the first notion, while not stating anything about
+;;     containment of the links. The second notion is expressed by
+;;     making the linkset a void-subset of the respective target
+;;     datasets.
+;;
+;;     Especially when referring to owl:sameAs links, usually the
+;;     second notion is intended. The property is symmetric, so their
+;;     subjects and objects are exchangeable. The question is usually
+;;     which publisher made the links available as part of their
+;;     dataset.
+;;
 ;; hammertime:
 
-(defvar mx-class-void 'mx-class-void "A VOID class.")
+(defvar mx-void-class 'mx-void-class "A VOID class.")
 
-(defvar mx-class 'mx-void-Dataset)
+(defvar mx-void-dataset 'void-Dataset "A VOID dataset.")
 
-(defun mx-load-void-dataset ()
-  "Load a formatted VOID dataset."
-  (interactive (file))
-  ; libxml-parse-xml-tree
-  (message "VOID dataset loaded."))
-
-(defun mx-create-void-dataset ()
-      "dataset – A set of RDF triples that are published,
-maintained or aggregated by a single provider."
-      (interactive (name))
-      ; open a buffer and write the headers
-      (message "VOID dataset open for editing."))
+(defvar mx-void-dataset 'void-dataset 
+  "Dataset – A set of RDF triples that are published, maintained
+or aggregated by a single provider.")
 
 (setq mx-void-uri "http://rdfs.org/ns/void#Dataset")
 
@@ -399,140 +413,143 @@ pattern matching URIs in the dataset.")
 
 <document.rdf> void-inDataset <void.ttl#MyDataset> .")
 
-:Aggregate_DS a void-Dataset;
-    dcterms:title "Aggregate Dataset";
-    dcterms:description "An aggregate of the A and B datasets.";
-    void-sparqlEndpoint <http://example.org/sparql>;
-    void-subset :DS_A;
-    void-subset :DS_B;
-    .
 
-:MyDataset a void-Dataset;
-    void-classPartition [ void-class foaf:Person; ];
-    void-classPartition [ void-class foaf:Organization; ];
-    void-propertyPartition [ void-property foaf:name; ];
-    void-propertyPartition [ void-property foaf:member; ];
-    void-propertyPartition [ void-property foaf:homepage; ];
-    void-propertyPartition [ void-property rdf:type; ];
-    .
+;;; Some Dublin Core Terms:
+;;; http://dublincore.org/documents/2008/01/14/dcmi-terms/
+(defvar mx-dcterms-title 'dcterms-title 
+  "The name of the dataset.")
 
-;; slightly modified version of the note contained in the official ref:
-;; Note: There are two different notions of “directionality” for RDF links:
-;;
-;;     Which dataset provides the subjects of the triples, and which the objects?
-;;     Which dataset contains the links? (Who published them?)
-;;
-;;     The void-subjectsTarget and void-objectsTarget properties
-;;     express the first notion, while not stating anything about
-;;     containment of the links. The second notion is expressed by
-;;     making the linkset a void-subset of the respective target
-;;     datasets.
-;;
-;;     Especially when referring to owl:sameAs links, usually the
-;;     second notion is intended. The property is symmetric, so
-;;     their subjects and objects are exchangeable. The question is
-;;     usually which publisher made the links available as part of
-;;     their dataset.
+(defvar mx-dcterms-description 'dcterms-description
+  "A textual description of the dataset.")
 
-;; example VOID in an org src block
-;; #+begin_src n3
-;; :DBpedia a void-Dataset .
-;; :DBpedia_Geonames a void-Linkset .
-;; :DBpedia a void-Dataset;
-;;    foaf:homepage <http://dbpedia.org/> .
-;; #+end_src
+(defvar mx-dcterms-creator 'dcterms-creator
+  "An entity, such as a person, organisation, or service, that is
+primarily responsible for creating the dataset. The creator
+should be described as an RDF resource, rather than just
+providing the name as a literal.")
 
-(defvar dcterms-title "The name of the dataset.")
+(defvar mx-dcterms-publisher 'dcterms-publisher
+  "An entity, such as a person, organisation, or service, that is
+responsible for making the dataset available. The publisher
+should be described as an RDF resource, rather than just
+providing the name as a literal.")
 
-(defvar dcterms-description "A textual description of the dataset.")
+(defvar mx-dcterms-contributor 'dcterms-contributor
+  "An entity, such as a person, organisation, or service, that is
+responsible for making contributions to the dataset. The
+contributor should be described as an RDF resource, rather than
+just providing the name as a literal.")
 
-(defvar dcterms-creator "An entity, such as a person,
-organisation, or service, that is primarily responsible for
-creating the dataset. The creator should be described as an RDF
-resource, rather than just providing the name as a literal.")
-
-(defvar dcterms-publisher "An entity, such as a person,
-organisation, or service, that is responsible for making the
-dataset available. The publisher should be described as an RDF
-resource, rather than just providing the name as a literal.")
-
-(defvar dcterms-contributor "An entity, such as a person,
-organisation, or service, that is responsible for making
-contributions to the dataset. The contributor should be described
-as an RDF resource, rather than just providing the name as a
+(defvar mx-dcterms-source 'dcterms-source
+  "A related resource from which the dataset is derived.  The
+source should be described as an RDF resource, rather than as a
 literal.")
 
-(defvar dcterms-source "A related resource from which the dataset
-is derived. The source should be described as an RDF resource,
-rather than as a literal.")
+(defvar mx-dcterms-date 'dcterms-date
+  "A point or period of time associated with an event in the
+life-cycle of the resource. The value should be formatted and
+data-typed as an xsd:date.")
 
-(defvar dcterms-date "A point or period of time associated with
-an event in the life-cycle of the resource. The value should be
-formatted and data-typed as an xsd:date.")
+(defvar mx-dcterms-created 'dcterms-created
+  "Date of creation of the dataset. The value should be formatted
+and data-typed as an xsd:date.")
 
-(defvar dcterms-created "Date of creation of the dataset. The
-value should be formatted and data-typed as an xsd:date.")
-
-(defvar dcterms-issued "Date of formal issuance *or*
-publication of the dataset. The value should be formatted and
-datatyped as an xsd:date.")
-
-(defvar dcterms-modified  "Date on which the dataset was changed. The
+(defvar mx-dcterms-issued 'dcterms-issued
+  "Date of formal issuance *or* publication of the dataset. The
 value should be formatted and datatyped as an xsd:date.")
 
+(defvar mx-dcterms-modified 'dcterms-modified
+  "Date on which the dataset was changed. The value should be
+formatted and datatyped as an xsd:date.")
+
+;; Sketches
+(defun mx-load-void-dataset ()
+  "Load a formatted VOID dataset."
+  (interactive)
+					; libxml-parse-xml-tree
+  (message "VOID dataset loaded.")  )
+
+(defun mx-create-void-dataset ()
+  "Create a VOID dataset."
+  (interactive)
+					; open a buffer and write the headers
+  (message "Opening a new VOID dataset for editing.")  )
+
+;; example DBpedia definitions
+;; :DBpedia a void-Dataset ;
+;;     void-sparqlEndpoint <http://dbpedia.org/sparql> ;
+;;     .
 ;; :DBLP a void-Dataset ; 
 ;;     dcterms-subject <http://dbpedia.org/resource/Computer_science> ;
 ;;     dcterms-subject <http://dbpedia.org/resource/Journal> ;
 ;;     dcterms-subject <http://dbpedia.org/resource/Proceedings> ;
 ;;     .
-
 ;; :DBpedia a void-Dataset ;
 ;;     void-feature <http://www.w3.org/ns/formats/RDF_XML> ;
 ;;     .
-
-;; :HTTPCachingETags a void-TechnicalFeature ;
-;;     mx-rdfs-label "HTTP ETag support" ;
-;;     mx-rdfs-comment "the dataset supports HTTP caching using ETags" ;
-;;     mx-rdfs-seeAlso <http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#> ;
+;; :DBpedia a void-Dataset;
+;;     void-exampleResource <http://dbpedia.org/resource/Berlin> ; 
+;;     void-exampleResource <http://dbpedia.org/resource/Physics> ;
+;;     void-exampleResource <http://dbpedia.org/resource/Ludwig_van_Beethoven> ;
+;;     .
+;; :DBpedia a void-Dataset;
+;;     void-uriSpace "http://dbpedia.org/resource/";
+;;     .
+;; :DBpedia a void-Dataset;
+;;     void-uriRegexPattern "^http://dbpedia\\.org/resource/";
+;;     .
+;; :DBpediaTurtleFiles a void-Dataset;
+;;     void-uriRegexPattern "^http://dbpedia\\.org/(.+)\\.ttl$";
+;;     void-feature <http://www.w3.org/ns/formats/Turtle>;
 ;;     .
 
-;; :DBpedia a void-Dataset ;
-;;     void-sparqlEndpoint <http://dbpedia.org/sparql> ;
-;;     .
-
+;; example NYTimes definition
 ;; :NYTimes a void-Dataset ;
 ;;     void-dataDump <http://data.nytimes.com/people.rdf> ;
 ;;     void-dataDump <http://data.nytimes.com/organizations.rdf> ;
 ;;     void-dataDump <http://data.nytimes.com/locations.rdf> ;
 ;;     void-dataDump <http://data.nytimes.com/descriptors.rdf> ;
 ;;     .
-
-;; :Sindice a void-Dataset ; 
-;;     void-uriLookupEndpoint
-;;     <http://api.sindice.com/v2/search?qt=term&q=> .
-
-;; :Sindice a void-Dataset ;
-;;     void-openSearchDescription
-;;     <http://www.sindice.com/opensearch.xml> .
-
-;; :DBpedia a void-Dataset;
-;;     void-exampleResource <http://dbpedia.org/resource/Berlin> ; 
-;;     void-exampleResource <http://dbpedia.org/resource/Physics> ;
-;;     void-exampleResource <http://dbpedia.org/resource/Ludwig_van_Beethoven> ;
+;; Example VOID 
+;; #+begin_src n3
+;; :DBpedia a :void-Dataset .
+;; :DBpedia_Geonames a :void-Linkset .
+;; :DBpedia a :void-Dataset;
+;;    foaf:homepage <http://dbpedia.org/> .
+;; #+end_src
+;;
+;; :Aggregate_DS a void-Dataset;
+;;     dcterms:title "Aggregate Dataset";
+;;     dcterms:description "An aggregate of the A and B datasets.";
+;;     void-sparqlEndpoint <http://example.org/sparql>;
+;;     void-subset :DS_A;
+;;     void-subset :DS_B;
 ;;     .
-
-;; :DBpedia a void-Dataset;
-;;     void-uriSpace "http://dbpedia.org/resource/";
+;; :MyDataset a void-Dataset;
+;;     void-classPartition [ void-class foaf:Person; ];
+;;     void-classPartition [ void-class foaf:Organization; ];
+;;     void-propertyPartition [ void-property foaf:name; ];
+;;     void-propertyPartition [ void-property foaf:member; ];
+;;     void-propertyPartition [ void-property foaf:homepage; ];
+;;     void-propertyPartition [ void-property rdf:type; ];
 ;;     .
+;;
+;; HTTP ETags: The relationship between emacs etags and http etags is
+;; still somewhat hazy to me, so I will only sketch this.
+(defvar mx-HTTPCachingETags 'mx-void-TechnicalFeature
+  "The ETag or entity tag is part of HTTP, the protocol for the
+  World Wide Web. It is one of several mechanisms that HTTP
+  provides for web cache validation, and which allows a client to
+  make conditional requests. --
+  http://en.wikipedia.org/wiki/HTTP_ETag")
 
-;; :DBpedia a void-Dataset;
-;;     void-uriRegexPattern "^http://dbpedia\\.org/resource/";
-;;     .
+(setq mx-rdfs-label . "HTTP ETag support")
 
-;; :DBpediaTurtleFiles a void-Dataset;
-;;     void-uriRegexPattern "^http://dbpedia\\.org/(.+)\\.ttl$";
-;;     void-feature <http://www.w3.org/ns/formats/Turtle>;
-;;     .
+(setq mx-rdfs-comment "the dataset supports HTTP caching using
+ETags"
 
+(setq mx-rdfs-seeAlso
+      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#")
 
-
+(provide 'void)
+;; eof
